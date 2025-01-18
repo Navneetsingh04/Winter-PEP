@@ -5,5 +5,25 @@ console.log(reverseStr(str));
 
 // Question 5:Create a chainable object using arrow functions that allows you to set a value and then add or multiply it by a number.
 
-const result = chainable(3).add(2).multiply(2).value();
-console.log(result); 
+const result = (() => {
+    let val  = 0;
+
+    return {
+        set : (num) => {
+            val = num;
+            return result;
+        },
+        add : (num) => {
+            val += num;
+            return result;
+        },
+        multiply : (num) =>{
+            val *= num;
+            return result;
+        },
+        getResult : () => val
+    };
+})();
+
+const ans = result.set(10).add(4).multiply(9).getResult();
+console.log(ans);
